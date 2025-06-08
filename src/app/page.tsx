@@ -1,10 +1,17 @@
+import { Suspense } from 'react';
+import { PostList } from '@/components/PostList';
 import SpinLoader from '@/components/SpinLoader';
-import clsx from 'clsx';
 
-const HomePage = () => {
+const HomePage = async () => {
   return (
     <div>
-      <SpinLoader containerClasses={clsx('min-h-[500px]', 'bg-amber-500')} />
+      <h1>Título da página</h1>
+      <Suspense fallback={<SpinLoader />}>
+        <PostList />
+      </Suspense>
+      <footer>
+        <p>Footer</p>
+      </footer>
     </div>
   );
 };

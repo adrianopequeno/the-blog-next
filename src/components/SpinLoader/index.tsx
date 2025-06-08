@@ -1,16 +1,11 @@
 import clsx from 'clsx';
 
 type SpinLoaderProps = {
-  containerClasses?: string;
+  className?: string;
 };
 
-const SpinLoader = ({ containerClasses = '' }: SpinLoaderProps) => {
-  const classes = clsx(
-    'flex',
-    'items-center',
-    'justify-center',
-    containerClasses
-  );
+const SpinLoader = ({ className = '' }: SpinLoaderProps) => {
+  const classes = clsx('flex', 'items-center', 'justify-center', className);
 
   return (
     <div className={classes}>
