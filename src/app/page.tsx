@@ -1,18 +1,23 @@
 import { Suspense } from 'react';
 import { PostList } from '@/components/PostList';
 import SpinLoader from '@/components/SpinLoader';
+import { Container } from '@/components/Container';
 
 const HomePage = async () => {
   return (
-    <div className="text-slate-900 bg-slate-300 min-h-screen dark:bg-slate-900 dark:text-slate-100">
-      <h1>Título da página</h1>
+    <Container>
+      <header>
+        <h1 className="text-6xl font-bold text-center py-8">
+          Título da página
+        </h1>
+      </header>
       <Suspense fallback={<SpinLoader />}>
         <PostList />
       </Suspense>
       <footer>
-        <p>Footer</p>
+        <p className="text-6xl font-bold text-center py-8">Footer</p>
       </footer>
-    </div>
+    </Container>
   );
 };
 
