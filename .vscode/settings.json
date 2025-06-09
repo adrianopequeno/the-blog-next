@@ -8,5 +8,6 @@
   },
   "tailwindCSS.experimental.classRegex": [
     ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
-  ]
+  ],
+  "workbench.editor.enablePreview": false // remove o preview ao abrir um arquivo.
 }
