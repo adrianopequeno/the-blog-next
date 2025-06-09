@@ -5,6 +5,7 @@ import { Container } from '@/components/Container';
 import { Header } from '@/components/Header';
 import Link from 'next/link';
 import Image from 'next/image';
+import { PostHeading } from '@/components/PostHeading';
 
 const HomePage = async () => {
   return (
@@ -28,9 +29,9 @@ const HomePage = async () => {
           >
             20-05-2025 10:00
           </time>
-          <h2 className="text-2xl/tight font-extrabold sm:text-4xl">
-            <Link href={'#'}>Lorem ipsum dolor sit amet.</Link>
-          </h2>
+          <PostHeading url="#">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          </PostHeading>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
             facilis deserunt, nulla beatae quibusdam perspiciatis excepturi modi
