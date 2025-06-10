@@ -1,9 +1,14 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { ThemeButton } from '@/components/ThemeButton';
+import { Container } from '@/components/Container';
+import { Header } from '@/components/Header';
 
 export const metadata: Metadata = {
-  title: 'The blog - este é um blog com Next.js',
+  title: {
+    default: 'The blog - este é um blog com Next.js',
+    template: '%s | The blog',
+  },
   description: 'Descrição da página',
 };
 
@@ -16,7 +21,13 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
     <html lang="pt-BR" className="light">
       <body>
         <ThemeButton />
-        {children}
+        <Container>
+          <Header />
+          {children}
+          <footer>
+            <p className="text-6xl font-bold text-center py-8">Footer</p>
+          </footer>
+        </Container>
       </body>
     </html>
   );
