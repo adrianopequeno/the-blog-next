@@ -1,7 +1,6 @@
 import { postRepository } from '@/repositories/post';
-import { PostCoverImage } from '../PostCoverImage';
-import { PostHeading } from '../PostHeading';
-import { formatDistanceToNow, getFormattedDate } from '@/utils/format-datetime';
+import { PostCoverImage } from '@/components/PostCoverImage';
+import { PostSummary } from '@/components/PostSummary';
 
 export const PostList = async () => {
   const posts = await postRepository.fintAll();
@@ -22,19 +21,13 @@ export const PostList = async () => {
                 priority: true,
               }}
             />
-            <div className="flex flex-col gap-4 sm:justify-center">
-              <time
-                className="text-slate-600 block text-sm/tight"
-                dateTime={post.createdAt}
-                title={formatDistanceToNow(post.createdAt)}
-              >
-                {getFormattedDate(post.createdAt)}
-              </time>
-              <PostHeading url={postLink} as="h3">
-                {post.title}
-              </PostHeading>
-              <p>{post.excerpt}</p>
-            </div>
+            <PostSummary
+              postHeading="h3"
+              createdAt={post.createdAt}
+              excerpt={post.excerpt}
+              postLink={postLink}
+              title={post.title}
+            />
           </div>
         );
       })}
