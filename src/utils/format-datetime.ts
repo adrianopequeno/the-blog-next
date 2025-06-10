@@ -1,4 +1,7 @@
-import { format, formatDistanceToNow } from 'date-fns';
+import {
+  format,
+  formatDistanceToNow as dateFnsFormatDistanceToNow,
+} from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
 export const formatDateTime = (rawDate: string): string => {
@@ -9,15 +12,24 @@ export const formatDateTime = (rawDate: string): string => {
   });
 };
 
-export const formatRelativeDate = (rawDate: string): string => {
+export const formatDistanceToNow = (rawDate: string): string => {
   const date = new Date(rawDate);
 
-  return formatDistanceToNow(date, {
+  return dateFnsFormatDistanceToNow(date, {
     locale: ptBR,
     addSuffix: true,
   });
 };
 
-const rawDate = '2025-06-09T20:26:54.116Z';
-console.log(rawDate);
-console.log(formatRelativeDate(rawDate));
+export const getFormattedDate = (rawDate: string): string => {
+  const date = new Date(rawDate);
+  const now = new Date();
+  const diffInHours =
+    Math.abs(now.getTime() - date.getTime()) / (1000 * 60 * 60);
+
+  if (diffInHours >= 24) {
+    return formatDateTime(rawDate);
+  }
+
+  return formatDistanceToNow(rawDate);
+};

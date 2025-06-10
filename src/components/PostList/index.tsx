@@ -1,6 +1,7 @@
 import { postRepository } from '@/repositories/post';
 import { PostCoverImage } from '../PostCoverImage';
 import { PostHeading } from '../PostHeading';
+import { formatDistanceToNow, getFormattedDate } from '@/utils/format-datetime';
 
 export const PostList = async () => {
   const posts = await postRepository.fintAll();
@@ -25,8 +26,9 @@ export const PostList = async () => {
               <time
                 className="text-slate-600 block text-sm/tight"
                 dateTime={post.createdAt}
+                title={formatDistanceToNow(post.createdAt)}
               >
-                {post.createdAt}
+                {getFormattedDate(post.createdAt)}
               </time>
               <PostHeading url={postLink} as="h3">
                 {post.title}
