@@ -6,11 +6,8 @@ import { PostFeatured } from '@/components/PostFeatured';
 const HomePage = async () => {
   return (
     <>
-      <Suspense fallback={<SpinLoader />}>
+      <Suspense fallback={<SpinLoader className="min-h-20 mb-16" />}>
         <PostFeatured />
-      </Suspense>
-
-      <Suspense fallback={<SpinLoader />}>
         <PostList />
       </Suspense>
     </>
