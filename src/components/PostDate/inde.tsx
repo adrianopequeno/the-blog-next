@@ -1,17 +1,17 @@
 import { formatDistanceToNow, getFormattedDate } from '@/utils/format-datetime';
 
 type PostDateProps = {
-  createdAt: string;
+  dateTime: string;
 };
 
-export const PostDate = ({ createdAt }: PostDateProps) => {
+export const PostDate = ({ dateTime }: PostDateProps) => {
   return (
     <time
-      className="text-slate-600 block text-sm/tight"
-      dateTime={createdAt}
-      title={formatDistanceToNow(createdAt)}
+      className="text-slate-600 text-sm/tight"
+      dateTime={dateTime}
+      title={formatDistanceToNow(dateTime)}
     >
-      {getFormattedDate(createdAt)}
+      {getFormattedDate(dateTime)}
     </time>
   );
 };
