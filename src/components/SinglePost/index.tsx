@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { PostHeading } from '@/components/PostHeading';
 import { PostDate } from '@/components/PostDate/inde';
 import { SafeMarkdown } from '@/components/SafeMarkdown';
+import { creatImageSrc } from '@/utils/create-image-src-';
 
 type SinglePostProps = {
   slug: string;
@@ -15,7 +16,7 @@ export const SinglePost = async ({ slug }: SinglePostProps) => {
       <header className="group flex flex-col gap-4 mb-4">
         <Image
           className="rounded-xl"
-          src={post.coverImageUrl}
+          src={creatImageSrc(post.coverImageUrl)}
           width={1200}
           height={720}
           alt={post.title}
