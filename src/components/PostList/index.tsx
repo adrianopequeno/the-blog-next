@@ -1,6 +1,7 @@
 import { PostCoverImage } from '@/components/PostCoverImage';
 import { PostSummary } from '@/components/PostSummary';
 import { findAllPublicPostsCached } from '@/lib/post/queries';
+import { creatImageSrc } from '@/utils/create-image-src-';
 
 export const PostList = async () => {
   const posts = await findAllPublicPostsCached();
@@ -14,7 +15,7 @@ export const PostList = async () => {
             <PostCoverImage
               linkProps={{ href: postLink }}
               imageProps={{
-                src: post.coverImageUrl,
+                src: creatImageSrc(post.coverImageUrl),
                 alt: post.title,
                 width: 1200,
                 height: 720,
