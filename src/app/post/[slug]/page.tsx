@@ -4,6 +4,8 @@ import { SinglePost } from '@/components/SinglePost';
 import SpinLoader from '@/components/SpinLoader';
 import { findPostBySlugCached } from '@/lib/post/queries';
 
+export const dynamic = 'force-static';
+
 type PostSlugPageProps = {
   params: Promise<{ slug: string }>;
 };

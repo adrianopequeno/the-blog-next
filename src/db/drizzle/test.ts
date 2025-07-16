@@ -1,10 +1,15 @@
+// import { eq } from 'drizzle-orm';
 // import { drizzleDb } from '.';
 // import { postsTable } from './schemas';
 
 // (async () => {
-//   const posts = await drizzleDb.select().from(postsTable);
-
-//   posts.map((post) => {
-//     console.log(post);
-//   });
+//   await drizzleDb
+//     .update(postsTable)
+//     .set({
+//       title: '1 Rotina matinal de pessoas altamente eficazes',
+//       published: true,
+//     })
+//     .where(
+//       eq(postsTable.slug, 'post/rotina-matinal-de-pessoas-altamente-eficazes')
+//     );
 // })();

@@ -33,3 +33,11 @@ export const getFormattedDate = (rawDate: string): string => {
 
   return formatDistanceToNow(rawDate);
 };
+
+export const formatHour = (timestampMs: number): string => {
+  const date = new Date(timestampMs);
+
+  return format(date, 'HH:mm', {
+    locale: ptBR,
+  });
+};
