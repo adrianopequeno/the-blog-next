@@ -5,7 +5,6 @@ export async function asyncDelay(milliseconds: number = 0, verbose = false) {
 
   if (verbose) {
     logColor(`Delaying for ${milliseconds / 1000}s`);
-
-    await new Promise((resolve) => setTimeout(resolve, milliseconds));
   }
+  await new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
