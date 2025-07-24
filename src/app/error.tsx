@@ -16,7 +16,7 @@ const RootErrorPage = ({ error }: RootErrorPageProps) => {
   return (
     <ErrorMessage
       pageTitle="Internal Server Error"
-      contentTitle="501"
+      contentTitle="501 😱"
       content="Ocorreu um erro do qual nossa aplicação não conseguiu se recuperar. Tente novamente mais tarde!"
     />
   );

@@ -3,7 +3,7 @@ import ErrorMessage from '@/components/ErrorMessage';
 const NotFount = () => {
   return (
     <ErrorMessage
-      pageTitle="Página não encontrada"
+      pageTitle="Página não encontrada 😱"
       contentTitle="404"
       content={
         <p>

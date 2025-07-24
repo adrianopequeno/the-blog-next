@@ -1,19 +1,19 @@
 import clsx from 'clsx';
 
 type ErrorMessageProps = {
-  pageTitle: string;
+  pageTitle?: string;
   contentTitle: string;
   content: React.ReactNode;
 };
 
 const ErrorMessage = ({
-  pageTitle,
+  pageTitle = '',
   contentTitle,
   content,
 }: ErrorMessageProps) => {
   return (
     <>
-      <title>{pageTitle}</title>
+      {pageTitle && <title>{pageTitle}</title>}
       <div
         className={clsx(
           'min-h-[320px] bg-slate-900 text-slate-100',
@@ -24,9 +24,7 @@ const ErrorMessage = ({
         )}
       >
         <div>
-          <h1 className="text-7xl/tight mb-4 font-extrabold">
-            {contentTitle} 😱
-          </h1>
+          <h1 className="text-7xl/tight mb-4 font-extrabold">{contentTitle}</h1>
           <div>{content}</div>
         </div>
       </div>
