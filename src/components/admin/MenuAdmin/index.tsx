@@ -43,7 +43,8 @@ export function MenuAdmin() {
   const openCloseBtnClasses = clsx(
     linkClasses,
     ' text-blue-200 italic',
-    'sm:hidden'
+    'sm:hidden',
+    'dark:text-slate-800'
   );
 
   return (
