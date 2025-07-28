@@ -26,13 +26,15 @@ export function MenuAdmin() {
     'sm:flex-row sm:flex-wrap',
     !isOpen && 'h-10 transition',
     !isOpen && 'overflow-hidden',
-    'sm:overflow-visible sm:h-auto'
+    'sm:overflow-visible sm:h-auto',
+    'dark:bg-slate-300 dark:text-slate-900'
   );
   const linkClasses = clsx(
     'text-lg',
     '[&>svg]:w-[16px] [&>svg]:h-[16px] px-4',
     'flex items-center justify-start gap-2',
     'transition hover:bg-slate-800 rounded-lg',
+    'dark:hover:bg-slate-500 dark:hover:text-slate-100',
     'h-10',
     'shrink-0',
     'cursor-pointer'
