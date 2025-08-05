@@ -1,3 +1,4 @@
+import { InputCheckbox } from '@/components/inputCheckbox';
 import { InputText } from '@/components/InputText';
 
 export const dynamic = 'force-dynamic';
@@ -7,6 +8,9 @@ export default async function AdminNewPostPage() {
     <div className="flex flex-col gap-6">
       <InputText labelText="Nome" placeholder="Digite seu nome" />
       <InputText labelText="Sobrenome" placeholder="Digite seu sobrenome" />
+
+      <InputCheckbox labelText="Aceitar" />
+
       <InputText
         labelText="Sobrenome"
         placeholder="Digite seu sobrenome"
