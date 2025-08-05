@@ -8,6 +8,7 @@ export const ThemeButton = () => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
       document.body.classList.add('dark');
+      document.documentElement.setAttribute('data-color-mode', savedTheme);
     }
   }, []);
 
@@ -15,6 +16,11 @@ export const ThemeButton = () => {
     const isDark = document.body.classList.toggle('dark');
     // Save theme preference to localStorage
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    // Atualiza o data-color-mode
+    document.documentElement.setAttribute(
+      'data-color-mode',
+      isDark ? 'dark' : 'light'
+    );
   };
 
   return <button onClick={handleTheme}>mudar tema</button>;
