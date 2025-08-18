@@ -4,7 +4,6 @@ import { makePartialPublicPost, PublicPost } from '@/dto/post/dto';
 import { PostCreateSchema } from '@/lib/validations';
 import { PostModel } from '@/models/post/post-model';
 import { postRepository } from '@/repositories/post';
-import { asyncDelay } from '@/utils/async-delay';
 import { getZodErrorMessages } from '@/utils/get-zod-error-messages';
 import { makeSlugFromText } from '@/utils/make-slug-from-text';
 import { revalidateTag } from 'next/cache';
@@ -22,8 +21,6 @@ export async function createPostAction(
 ): Promise<CreatePostActionState> {
   // TODO: verificar se o usuário tá logado
 
-  await asyncDelay(3000);
-
   if (!(formData instanceof FormData)) {
     return {
       formState: prevState.formState,
@@ -36,7 +33,6 @@ export async function createPostAction(
 
   if (!zodParsedObj.success) {
     const errors = getZodErrorMessages(zodParsedObj.error);
-    // console.log(errors);
     return {
       errors,
       formState: makePartialPublicPost(formDataToObj),
