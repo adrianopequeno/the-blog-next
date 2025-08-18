@@ -7,7 +7,7 @@ import { postsTable } from './schemas';
   const posts = await jsonPostsRepository.findAll();
 
   console.log();
-  console.log(`${posts.length} forma salvos na base de dados`);
+  console.log(`${posts.length} post foram salvos na base de dados`);
   console.log();
 
   try {
