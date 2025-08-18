@@ -4,6 +4,7 @@ import { makePartialPublicPost, PublicPost } from '@/dto/post/dto';
 import { PostCreateSchema } from '@/lib/validations';
 import { PostModel } from '@/models/post/post-model';
 import { getZodErrorMessages } from '@/utils/get-zod-error-messages';
+import { makeSlugFromText } from '@/utils/make-slug-from-text';
 
 type CreatePostActionState = {
   formState: PublicPost;
@@ -38,8 +39,8 @@ export async function createPostAction(
   const validPostData = zodParsedObj.data;
   const newPost: PostModel = {
     ...validPostData,
-    id: crypto.randomUUID(),
-    slug: validPostData.title.toLowerCase().replace(/\s/g, '-'),
+    id: crypto.randomUUID(), // nativo do JS mais modernos - usa UUIDv4
+    slug: makeSlugFromText(validPostData.title),
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   };
