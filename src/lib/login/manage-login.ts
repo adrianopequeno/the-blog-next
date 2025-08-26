@@ -1,5 +1,11 @@
 import bcrypt from 'bcryptjs';
 import { cookies } from 'next/headers';
+import { SignJWT, jwtVerify } from 'jose';
+
+type JwtPayload = {
+  username: string;
+  expiresAt: Date;
+};
 
 const jwtSecretKey = process.env.JWT_SECRET_KEY;
 const jwtEncodedKey = new TextEncoder().encode(jwtSecretKey);
@@ -21,7 +27,7 @@ export async function verifyPassword(password: string, base64Hash: string) {
 
 export async function createLoginSession(username: string) {
   const expiresAt = new Date(Date.now() + loginExpSeconds * 1000); // data no futuro de 1 dia em ms.
-  const loginSession = username + ' Qualquer coisa'; // vai ser o JWT
+  const loginSession = await signJwt({ username, expiresAt }); // vai ser o JWT
   const cookieStore = await cookies();
 
   cookieStore.set(loginCookieName, loginSession, {
@@ -37,4 +43,13 @@ export async function deleteLoginSession() {
   // faz com q o navegador expire o cookie
   cookieStore.set(loginCookieName, '', { expires: new Date(0) });
   cookieStore.delete(loginCookieName);
+}
+
+// Assinando o JWT
+export async function signJwt(jwtPayload: JwtPayload) {
+  return new SignJWT(jwtPayload)
+    .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
+    .setIssuedAt()
+    .setExpirationTime(loginExpStr)
+    .sign(jwtEncodedKey);
 }
