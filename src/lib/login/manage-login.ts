@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import { cookies } from 'next/headers';
 import { SignJWT, jwtVerify } from 'jose';
+import { redirect } from 'next/navigation';
 
 type JwtPayload = {
   username: string;
@@ -45,6 +46,35 @@ export async function deleteLoginSession() {
   cookieStore.delete(loginCookieName);
 }
 
+// sistema de login ok.
+export async function getLoginSession() {
+  const cookieStore = await cookies();
+  const jwt = cookieStore.get(loginCookieName)?.value;
+
+  if (!jwt) return false;
+
+  return verifyJwt(jwt);
+}
+
+// como só tem um usuário add essa verificaçao a +
+export async function verifyLoginSession() {
+  const jwtPayload = await getLoginSession();
+
+  if (!jwtPayload) return false;
+
+  return jwtPayload?.username === process.env.LOGIN_USER;
+}
+
+// função que ficará nas pags para ver se o usuário esta logado ou não
+export async function requireLoginSessionOrRedirect() {
+  // const isAuthenticated = await getLoginSession(); // usar quando tiver mais usuários
+  const isAuthenticated = await verifyLoginSession();
+
+  if (!isAuthenticated) {
+    redirect('/admin/login');
+  }
+}
+
 // Assinando o JWT
 export async function signJwt(jwtPayload: JwtPayload) {
   return new SignJWT(jwtPayload)
@@ -52,4 +82,17 @@ export async function signJwt(jwtPayload: JwtPayload) {
     .setIssuedAt()
     .setExpirationTime(loginExpStr)
     .sign(jwtEncodedKey);
+}
+
+// verifica o token jwt
+export async function verifyJwt(jwt: string | undefined = '') {
+  try {
+    const { payload } = await jwtVerify(jwt, jwtEncodedKey, {
+      algorithms: ['HS256'],
+    });
+    return payload;
+  } catch {
+    console.error('Invalid Token!');
+    return false;
+  }
 }
